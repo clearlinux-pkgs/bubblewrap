@@ -1,0 +1,2 @@
+Configure miss: libselinux >= 2.1.9
+Configure miss: if gcc supports flag -Werror=parenthesis in envvar CFLAGS
