@@ -4,7 +4,7 @@
 #
 Name     : bubblewrap
 Version  : 0.3.1
-Release  : 1
+Release  : 2
 URL      : https://github.com/projectatomic/bubblewrap/archive/v0.3.1.tar.gz
 Source0  : https://github.com/projectatomic/bubblewrap/archive/v0.3.1.tar.gz
 Summary  : Core execution tool for unprivileged containers
