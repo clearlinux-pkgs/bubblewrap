@@ -4,7 +4,7 @@
 #
 Name     : bubblewrap
 Version  : 0.3.1
-Release  : 2
+Release  : 3
 URL      : https://github.com/projectatomic/bubblewrap/archive/v0.3.1.tar.gz
 Source0  : https://github.com/projectatomic/bubblewrap/archive/v0.3.1.tar.gz
 Summary  : Core execution tool for unprivileged containers
@@ -18,6 +18,7 @@ BuildRequires : docbook-xml
 BuildRequires : libcap-dev
 BuildRequires : libxslt-bin
 BuildRequires : pkgconfig(bash-completion)
+Patch1: CVE-2019-12439.patch
 
 %description
 Bubblewrap (/usr/bin/bwrap) is a core execution engine for unprivileged
@@ -60,14 +61,19 @@ man components for the bubblewrap package.
 
 %prep
 %setup -q -n bubblewrap-0.3.1
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1553136046
-export LDFLAGS="${LDFLAGS} -fno-lto"
+export SOURCE_DATE_EPOCH=1559168326
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 %autogen --disable-static
 make  %{?_smp_mflags}
 
@@ -79,7 +85,7 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 make VERBOSE=1 V=1 %{?_smp_mflags} check
 
 %install
-export SOURCE_DATE_EPOCH=1553136046
+export SOURCE_DATE_EPOCH=1559168326
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bubblewrap
 cp COPYING %{buildroot}/usr/share/package-licenses/bubblewrap/COPYING
