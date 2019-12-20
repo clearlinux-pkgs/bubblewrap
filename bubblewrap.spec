@@ -4,7 +4,7 @@
 #
 Name     : bubblewrap
 Version  : 0.3.3
-Release  : 4
+Release  : 5
 URL      : https://github.com/projectatomic/bubblewrap/archive/v0.3.3/bubblewrap-0.3.3.tar.gz
 Source0  : https://github.com/projectatomic/bubblewrap/archive/v0.3.3/bubblewrap-0.3.3.tar.gz
 Summary  : Core execution tool for unprivileged containers
@@ -60,13 +60,14 @@ man components for the bubblewrap package.
 
 %prep
 %setup -q -n bubblewrap-0.3.3
+cd %{_builddir}/bubblewrap-0.3.3
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1571363247
+export SOURCE_DATE_EPOCH=1576864798
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
 export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
@@ -80,10 +81,10 @@ export LANG=C.UTF-8
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-make VERBOSE=1 V=1 %{?_smp_mflags} check
+make VERBOSE=1 V=1 %{?_smp_mflags} check || :
 
 %install
-export SOURCE_DATE_EPOCH=1571363247
+export SOURCE_DATE_EPOCH=1576864798
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/bubblewrap
 cp %{_builddir}/bubblewrap-0.3.3/COPYING %{buildroot}/usr/share/package-licenses/bubblewrap/ba8966e2473a9969bdcab3dc82274c817cfd98a1
