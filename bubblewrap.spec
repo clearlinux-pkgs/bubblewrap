@@ -4,7 +4,7 @@
 #
 Name     : bubblewrap
 Version  : 0.3.3
-Release  : 5
+Release  : 6
 URL      : https://github.com/projectatomic/bubblewrap/archive/v0.3.3/bubblewrap-0.3.3.tar.gz
 Source0  : https://github.com/projectatomic/bubblewrap/archive/v0.3.3/bubblewrap-0.3.3.tar.gz
 Summary  : Core execution tool for unprivileged containers
@@ -69,10 +69,10 @@ export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
 export SOURCE_DATE_EPOCH=1576864798
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
-export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -mzero-caller-saved-regs=used "
+export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FCFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export FFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
 %autogen --disable-static
 make  %{?_smp_mflags}
 
