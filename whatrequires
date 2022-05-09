@@ -1,4 +1,4 @@
 # This file contains recursive sources that require this package
-gnome-desktop
+compat-webkitgtk-soname40
 webkitgtk
 xdg-desktop-portal

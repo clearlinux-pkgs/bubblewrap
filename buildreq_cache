@@ -1,4 +1,5 @@
-0.5.0
+0.6.1
 docbook-xml
 libcap-dev
 libxslt-bin
+pkgconfig(libcap)
