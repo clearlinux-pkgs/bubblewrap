@@ -4,12 +4,12 @@
 #
 Name     : bubblewrap
 Version  : 0.6.2
-Release  : 9
+Release  : 10
 URL      : https://github.com/projectatomic/bubblewrap/archive/v0.6.2/bubblewrap-0.6.2.tar.gz
 Source0  : https://github.com/projectatomic/bubblewrap/archive/v0.6.2/bubblewrap-0.6.2.tar.gz
 Summary  : Core execution tool for unprivileged containers
 Group    : Development/Tools
-License  : LGPL-2.0 LGPL-2.1+
+License  : LGPL-2.0 LGPL-2.0+
 Requires: bubblewrap-bin = %{version}-%{release}
 Requires: bubblewrap-data = %{version}-%{release}
 Requires: bubblewrap-license = %{version}-%{release}
@@ -69,19 +69,19 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1652320275
+export SOURCE_DATE_EPOCH=1664889436
 export GCC_IGNORE_WERROR=1
-export CFLAGS="$CFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
-export FCFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
-export FFLAGS="$FFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
-export CXXFLAGS="$CXXFLAGS -fno-lto -fstack-protector-strong -fzero-call-used-regs=used "
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 CFLAGS="$CFLAGS" CXXFLAGS="$CXXFLAGS" LDFLAGS="$LDFLAGS" meson --libdir=lib64 --prefix=/usr --buildtype=plain   builddir
 ninja -v -C builddir
 
 %install
 mkdir -p %{buildroot}/usr/share/package-licenses/bubblewrap
-cp %{_builddir}/bubblewrap-0.6.2/COPYING %{buildroot}/usr/share/package-licenses/bubblewrap/ba8966e2473a9969bdcab3dc82274c817cfd98a1
-cp %{_builddir}/bubblewrap-0.6.2/LICENSE %{buildroot}/usr/share/package-licenses/bubblewrap/ba8966e2473a9969bdcab3dc82274c817cfd98a1
+cp %{_builddir}/bubblewrap-%{version}/COPYING %{buildroot}/usr/share/package-licenses/bubblewrap/ba8966e2473a9969bdcab3dc82274c817cfd98a1 || :
+cp %{_builddir}/bubblewrap-%{version}/LICENSE %{buildroot}/usr/share/package-licenses/bubblewrap/ba8966e2473a9969bdcab3dc82274c817cfd98a1 || :
 DESTDIR=%{buildroot} ninja -C builddir install
 
 %files
