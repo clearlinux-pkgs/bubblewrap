@@ -1,5 +1,4 @@
 # This file contains recursive sources that require this package
-compat-webkitgtk-soname40
 webkitgtk
-webkitgtk50
+webkitgtk60
 xdg-desktop-portal
